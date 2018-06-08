@@ -1,0 +1,17 @@
+---
+  name: "build_index"
+  runner_type: "python-script"
+  description: "Builds and returns an index object"
+  enabled: true
+  entry_point: "build_index.py"
+  parameters:
+    source:
+      type: "string"
+      required: true
+      default: "/opt/stackstorm/bitovi-stackstorm-index"
+    index_location:
+      type: "string"
+    resource_types:
+      type: "array"
+      required: true
+      default: ["actions", "sensors", "rules", "aliases"]
