@@ -30,6 +30,7 @@ class BuildIndex(Action):
 
         if os.path.isdir(source):
             parent_dir = os.path.dirname(os.getcwd())
+            packs = {}
             for pack in os.listdir(source):
                 pack_dir = source + "/" + pack
                 pack_yaml_dir = pack_dir + '/pack.yaml'
@@ -40,7 +41,8 @@ class BuildIndex(Action):
                 with open(pack_yaml_dir) as f:
                     pack_data = json.load(f)
 
-                index["packs"][pack_data["name"]] = {
+
+                packs[pack_data["name"]] = {
                     "name": pack_data["name"],
                     "ref": pack_data["ref"], # todo: if ref doesn't exist, use the name
                     "author": pack_data["author"], # todo: default
@@ -51,6 +53,11 @@ class BuildIndex(Action):
                     "version": pack_data["version"],
                     "content": self.get_content(pack, pack_data, resource_types)
                 }
+
+            return {
+                "packs": packs,
+                "pack_yaml_dir": pack_yaml_dir
+            }
 
             # set metadata
             index["metadata"] = {
