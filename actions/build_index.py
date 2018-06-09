@@ -27,14 +27,13 @@ class BuildIndex(Action):
         index = {}
 
         if os.path.isdir(source):
-            return os.listdir(source)
+            parent_dir = os.path.dirname(os.getcwd())
             for pack_dir in os.listdir(source):
-
                 pack_yml_exists = os.path.isdir(pack_dir)
                 if not pack_yml_exists:
                     continue
 
-                with open(pack_dir + '/pack.yml') as f:
+                with open(source + "/" + pack_dir + '/pack.yml') as f:
                     pack_data = json.load(f)
 
                 if not 'packs' in index:
