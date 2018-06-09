@@ -83,7 +83,7 @@ class BuildIndex(Action):
 
     def hash_packs(self, obj):
         h = hashlib.new('ripemd160')
-        h.update(obj)
+        h.update(json.dumps(obj))
         return h.hexdigest()
 
     def format_resource_components(self, resource_type, resource_dir, resource_components):
