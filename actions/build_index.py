@@ -44,14 +44,20 @@ class BuildIndex(Action):
                     }
                     continue
 
+
                 pack_data = self._parse_yaml_file(pack_yaml_dir)
 
-                if "name" in pack_data:
-                    pack_data["repo_url"] = org_url + "/" + pack_data["name"]
-                    packs[pack_data["name"]] = pack_data
-                else:
+                if not pack_data:
+                    index[pack] = {
+                        "pack_data": pack_data,
+                        "pack_yaml_dir": pack_yaml_dir
+                    }
+                elif "name" not in pack_data:
                     pack_data["repo_url"] = org_url + "/" + "undefined"
                     packs["undefined"] = pack_data
+                else:
+                    pack_data["repo_url"] = org_url + "/" + pack_data["name"]
+                    packs[pack_data["name"]] = pack_data
 
                     
 
