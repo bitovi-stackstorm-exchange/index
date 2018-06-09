@@ -43,8 +43,7 @@ class BuildIndex(Action):
                     }
                     continue
 
-                with open(pack_yaml_dir) as f:
-                    pack_data = json.load(f)
+                pack_data = _parse_yaml_file(pack_yaml_dir)
 
 
                 packs[pack_data["name"]] = {
