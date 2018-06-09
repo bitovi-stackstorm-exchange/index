@@ -48,14 +48,14 @@ class BuildIndex(Action):
 
                 packs[pack_data["name"]] = {
                     "pack_yaml_dir": pack_yaml_dir,
-                    "name": pack_data["name"],
-                    "ref": pack_data["ref"], # todo: if ref doesn't exist, use the name
-                    "author": pack_data["author"], # todo: default
-                    "description": pack_data["description"], # todo: default
-                    "email": pack_data["email"], # todo: default
-                    "keywords": pack_data["keywords"], # todo: default
+                    "name": pack_data.get("name"),
+                    "ref": pack_data.get("ref", pack_data.get("name")),
+                    "author": pack_data.get("name", None),
+                    "description": pack_data.get("description", None),
+                    "email": pack_data.get("email"),
+                    "keywords": pack_data.get("keywords"),
                     "repo_url": "https://github.com/bitovi-stackstorm-exchange/" + pack_data["name"],
-                    "version": pack_data["version"],
+                    "version": pack_data.get("version"),
                     "content": self.get_content(pack, pack_data, resource_types)
                 }
 
