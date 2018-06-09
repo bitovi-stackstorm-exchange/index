@@ -46,9 +46,14 @@ class BuildIndex(Action):
 
                 pack_data = self._parse_yaml_file(pack_yaml_dir)
 
+                if "name" in pack_data:
+                    pack_data["repo_url"] = org_url + "/" + pack_data["name"]
+                    packs[pack_data["name"]] = pack_data
+                else:
+                    pack_data["repo_url"] = org_url + "/" + "undefined"
+                    packs["undefined"] = pack_data
 
-                packs[pack_data["name"]] = "hello"
-                pack_data["repo_url"] = org_url + "/" + pack_data["name"]
+                    
 
 
             # set metadata
