@@ -33,6 +33,7 @@ class BuildIndex(Action):
                 if not pack_yml_exists:
                     continue
 
+                return source + "/" + pack_dir + '/pack.yml'
                 with open(source + "/" + pack_dir + '/pack.yml') as f:
                     pack_data = json.load(f)
 
