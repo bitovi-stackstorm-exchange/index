@@ -43,6 +43,7 @@ class BuildIndex(Action):
 
 
                 packs[pack_data["name"]] = {
+                    "pack_yaml_dir": pack_yaml_dir,
                     "name": pack_data["name"],
                     "ref": pack_data["ref"], # todo: if ref doesn't exist, use the name
                     "author": pack_data["author"], # todo: default
@@ -56,7 +57,8 @@ class BuildIndex(Action):
 
             return {
                 "packs": packs,
-                "pack_yaml_dir": pack_yaml_dir
+                "os.listdir": os.listdir(source),
+                "source": source
             }
 
             # set metadata
