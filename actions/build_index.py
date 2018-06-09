@@ -36,6 +36,11 @@ class BuildIndex(Action):
                 pack_yaml_dir = pack_dir + '/pack.yaml'
                 pack_yaml_exists = os.path.isdir(pack_yaml_dir)
                 if not pack_yaml_exists:
+                    packs[pack_data["name"]] = {
+                        "pack_dir": pack_dir,
+                        "pack_yaml_dir": pack_yaml_dir,
+                        "pack_yaml_exists": pack_yaml_exists
+                    }
                     continue
 
                 with open(pack_yaml_dir) as f:
