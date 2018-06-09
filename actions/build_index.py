@@ -46,18 +46,8 @@ class BuildIndex(Action):
                 pack_data = self._parse_yaml_file(pack_yaml_dir)
 
 
-                packs[pack_data["name"]] = {
-                    "pack_yaml_dir": pack_yaml_dir,
-                    "name": pack_data.get("name", None),
-                    "ref": pack_data.get("ref", pack_data.get("name")),
-                    "author": pack_data.get("name", None),
-                    "description": pack_data.get("description", None),
-                    "email": pack_data.get("email", None),
-                    "keywords": pack_data.get("keywords", None),
-                    "repo_url": "https://github.com/bitovi-stackstorm-exchange/" + pack_data["name"],
-                    "version": pack_data.get("version", None),
-                    "content": self.get_content(pack, pack_data, resource_types)
-                }
+                packs[pack_data["name"]] = pack_data
+                pack_data["repo_url"] = "https://github.com/bitovi-stackstorm-exchange/" + pack_data["name"]
 
 
             # set metadata
