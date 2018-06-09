@@ -113,7 +113,7 @@ class BuildIndex(Action):
                 "resources": self.format_resource_list(resource_type, resource_dir, resource_components)
             }
         else:
-            return false
+            return False
 
         return resource 
 
