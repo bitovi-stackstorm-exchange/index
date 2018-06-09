@@ -89,7 +89,7 @@ class BuildIndex(Action):
     def format_resource_components(self, resource_type, resource_dir, resource_components):
         components = []
         for component in resource_components:
-            if not component.endswith('.yml'):
+            if not component.endswith('.yaml'):
                 continue
 
             componentData = self._parse_yaml_file(component)
