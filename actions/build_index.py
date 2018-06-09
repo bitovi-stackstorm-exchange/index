@@ -29,7 +29,7 @@ class BuildIndex(Action):
         if os.path.isdir(source):
             for pack_dir in os.listdir(source):
                 pack_yml_exists = os.path.isdir(pack_dir)
-                if not pack_yml_exists
+                if not pack_yml_exists:
                     continue
 
                 with open(pack_dir + '/pack.yml') as f:
