@@ -28,13 +28,14 @@ class BuildIndex(Action):
 
         if os.path.isdir(source):
             parent_dir = os.path.dirname(os.getcwd())
-            for pack_dir in os.listdir(source):
-                pack_yml_exists = os.path.isdir(pack_dir)
-                if not pack_yml_exists:
+            for pack in os.listdir(source):
+                pack_dir = source + "/" + pack
+                pack_yaml_dir = pack_dir + '/pack.yaml'
+                pack_yaml_exists = os.path.isdir(pack_yaml_dir)
+                if not pack_yaml_exists:
                     continue
 
-                return source + "/" + pack_dir + '/pack.yml'
-                with open(source + "/" + pack_dir + '/pack.yml') as f:
+                with open(pack_yaml_dir) as f:
                     pack_data = json.load(f)
 
                 if not 'packs' in index:
@@ -49,7 +50,7 @@ class BuildIndex(Action):
                     "keywords": pack_data["keywords"], # todo: default
                     "repo_url": "https://github.com/bitovi-stackstorm-exchange/" + pack_data["name"],
                     "version": pack_data["version"],
-                    "content": self.get_content(pack_dir, pack_data, resource_types)
+                    "content": self.get_content(pack, pack_data, resource_types)
                 }
 
             # set metadata
