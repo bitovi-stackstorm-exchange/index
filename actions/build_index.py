@@ -65,9 +65,9 @@ class BuildIndex(Action):
             # set metadata
             index["metadata"] = {
                 "generated_ts": time.time(),
-                "hash": self.hash_packs(index["packs"]),
-                "packs": packs
+                "hash": self.hash_packs(index["packs"])
             }
+            index["packs"]: packs
 
         if index and index_location is not None:
             with open(index_location, 'w') as outfile:
