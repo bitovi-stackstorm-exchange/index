@@ -24,7 +24,9 @@ class BuildIndex(Action):
         The location to save the index file:
         `/opt/stackstorm/bitovi-stackstorm-exchange/index.json`
         """
-        index = {}
+        index = {
+            "packs": {}
+        }
 
         if os.path.isdir(source):
             parent_dir = os.path.dirname(os.getcwd())
@@ -37,9 +39,6 @@ class BuildIndex(Action):
 
                 with open(pack_yaml_dir) as f:
                     pack_data = json.load(f)
-
-                if not 'packs' in index:
-                    index["packs"] = {}
 
                 index["packs"][pack_data["name"]] = {
                     "name": pack_data["name"],
