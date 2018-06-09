@@ -59,11 +59,6 @@ class BuildIndex(Action):
                     "content": self.get_content(pack, pack_data, resource_types)
                 }
 
-            return {
-                "packs": packs,
-                "os.listdir": os.listdir(source),
-                "source": source
-            }
 
             # set metadata
             index["metadata"] = {
