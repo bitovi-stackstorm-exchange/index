@@ -4,3 +4,5 @@ description : Utilities for building a pack exchange index
 version : 0.1.0
 author : Bitovi, LLC
 email : mick@bitovi.com
+dependencies:
+  - file:////opt/stackstorm/bitovi-stackstorm-exchange/bitovi_packs
