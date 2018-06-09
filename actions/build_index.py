@@ -10,7 +10,7 @@ class BuildIndex(Action):
     '''
     Builds an index.json for an organization
     '''
-    def run(self, source, index_location, resource_types):
+    def run(self, source, index_location, resource_types, org_url):
         """
         `source` can be:
         A directory like: 
@@ -37,6 +37,7 @@ class BuildIndex(Action):
                 pack_yaml_exists = os.path.isfile(pack_yaml_dir)
                 if not pack_yaml_exists:
                     packs[pack] = {
+                        "name": pack,
                         "pack_dir": pack_dir,
                         "pack_yaml_dir": pack_yaml_dir,
                         "pack_yaml_exists": pack_yaml_exists
@@ -46,8 +47,8 @@ class BuildIndex(Action):
                 pack_data = self._parse_yaml_file(pack_yaml_dir)
 
 
-                packs[pack_data["name"]] = pack_data
-                pack_data["repo_url"] = "https://github.com/bitovi-stackstorm-exchange/" + pack_data["name"]
+                packs[pack_data["name"]] = "hello"
+                pack_data["repo_url"] = org_url + "/" + pack_data["name"]
 
 
             # set metadata
