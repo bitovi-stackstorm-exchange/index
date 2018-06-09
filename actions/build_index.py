@@ -43,7 +43,7 @@ class BuildIndex(Action):
                     }
                     continue
 
-                pack_data = _parse_yaml_file(pack_yaml_dir)
+                pack_data = self._parse_yaml_file(pack_yaml_dir)
 
 
                 packs[pack_data["name"]] = {
