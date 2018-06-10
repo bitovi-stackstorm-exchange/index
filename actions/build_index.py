@@ -10,7 +10,7 @@ class BuildIndex(Action):
     '''
     Builds an index.json for an organization
     '''
-    def run(self, source, index_location, resource_types, org_url):
+    def run(self, source, index_location, org_url):
         """
         `source` can be:
         A directory like: 
@@ -88,40 +88,3 @@ class BuildIndex(Action):
         h = hashlib.new('ripemd160')
         h.update(json.dumps(obj))
         return h.hexdigest()
-
-    def format_resource_components(self, resource_type, resource_dir, resource_components):
-        components = []
-        for component in resource_components:
-            if not component.endswith('.yaml'):
-                continue
-
-            componentData = self._parse_yaml_file(component)
-            components.append(componentData['name'])
-
-        return comonents
-
-
-    def get_resource(self, resource_type, pack_dir, pack_data):
-        resource = {}
-        resource_dir = pack_dir + "/" + resource_type
-        if os.path.isdir(resource_dir):
-            resource_components = os.listdir(resource_dir)
-            resource = {
-                "count": len(resource_components),
-                "resources": self.format_resource_list(resource_type, resource_dir, resource_components)
-            }
-        else:
-            return False
-
-        return resource 
-
-
-    def get_content(self, pack_dir, pack_data, resource_types):
-        content = {}
-
-        for resource_type in resource_types:
-            resource = self.get_resource(resource_type, pack_dir, pack_data)
-            if resource:
-                content[resource_type] = resource
-        
-        return content

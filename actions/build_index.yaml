@@ -8,13 +8,10 @@
     source:
       type: "string"
       required: true
-      default: "/opt/stackstorm/bitovi-stackstorm-index"
+      default: "/opt/stackstorm/bitovi-stackstorm-exchange"
     index_location:
       type: "string"
-    resource_types:
-      type: "array"
-      required: true
-      default: ["actions", "sensors", "rules", "aliases"]
+      default: "/opt/stackstorm/bitovi-stackstorm-exchange/index/index.json"
     org_url:
       type: "string"
       default: "https://github.com/bitovi-stackstorm-exchange/"
