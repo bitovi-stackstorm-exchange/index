@@ -14,4 +14,4 @@
       default: "/opt/stackstorm/bitovi-stackstorm-exchange/index/index.json"
     org_url:
       type: "string"
-      default: "https://github.com/bitovi-stackstorm-exchange/"
+      default: "https://github.com/bitovi-stackstorm-exchange"
